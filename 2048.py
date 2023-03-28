@@ -122,11 +122,13 @@ def main():
                         selector4 += 1
             elif control == "up":
                 selector = 0
-                selector2 = 0
-                selector3 = 0
-                selector4 = 0
                 for x in range(4):
                     if row2[selector] > 0:
+                        if row1[selector] == 0 or row1[selector] == row2[selector]:
+                            row1[selector] += row2[selector]
+                            row2[selector] = 0
+                    selector+=1
+                        
                 main()
     printfunc()
     inputfunc()
@@ -151,4 +153,3 @@ def setup():
             row4[blockstart] += 2
 setup()
 main()
-
