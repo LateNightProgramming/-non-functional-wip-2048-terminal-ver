@@ -18,6 +18,29 @@ def main():
         print(row2)
         print(row3)
         print(row4)
+        
+    def newblock():
+        starter = False
+        while starter == False:
+            rowchoice = r.randint(1,4)
+            if rowchoice == 1:
+                slotchoice = r.randint(0,3)
+                if row1[slotchoice] == 0:
+                    row1[slotchoice] += 2
+                    starter = True
+            elif rowchoice == 2:
+                slotchoice = r.randint(0,3)
+                if row2[slotchoice] == 0:
+                    row2[slotchoice] += 2
+                    starter = True
+            elif rowchoice == 3:
+                slotchoice = r.randint(0,3)
+                if row3[slotchoice] == 0:
+                    row3[slotchoice] += 2
+                    starter = True
+                
+            
+                
     def inputfunc():
         global control
         global row1
@@ -26,7 +49,7 @@ def main():
         global row4
         control = ""
         while control != 'left' and control != 'right' and control != 'up' and control != 'down':
-            control = input("please input which direction")
+            control = input("please input which direction").lower()
             if control != 'left' and control != 'right' and control != 'up' and control != 'down':
                 print("bruh")
             elif control == "left":
@@ -123,33 +146,73 @@ def main():
             elif control == "up":
                 selector = 0
                 for x in range(4):
-                    if row2[selector] > 0:
-                        if row1[selector] == 0 or row1[selector] == row2[selector]:
-                            row1[selector] += row2[selector]
-                            row2[selector] = 0
+                    for x in range(4):
+                        if row2[selector] > 0:
+                            if row1[selector] == 0 or row1[selector] == row2[selector]:
+                                row1[selector] += row2[selector]
+                                row2[selector] = 0
+                        if row3[selector] > 0:
+                            if row2[selector] == 0 or row2[selector] == row3[selector]:
+                                row2[selector] += row3[selector]
+                                row3[selector] = 0
+                        if row4[selector] > 0:
+                            if row3[selector] == 0 or row3[selector] == row4[selector]:
+                                row3[selector] += row4[selector]
+                                row4[selector] = 0
+                    selector+=1
+            elif control == "down":
+                selector = 0
+                for x in range(4):
+                    for x in range(4):
+                        if row1[selector] > 0:
+                            if row2[selector] == 0 or row2[selector] == row1[selector]:
+                                row2[selector] += row1[selector]
+                                row1[selector] = 0
+                        if row2[selector] > 0:
+                            if row3[selector] == 0 or row3[selector] == row2[selector]:
+                                row3[selector] += row2[selector]
+                                row2[selector] = 0
+                        if row3[selector] > 0:
+                            if row4[selector] == 0 or row4[selector] == row3[selector]:
+                                row4[selector] += row3[selector]
+                                row3[selector] = 0
                     selector+=1
                         
-                main()
     printfunc()
     inputfunc()
+    newblock()
+    main()
 def setup():
     global row1
     global row2
     global row3
     global row4
+    v1 = False
     for x in range(2):
         startchoice = r.randint(1,4)
         if startchoice == 1:
+            while v1 == False:
+                blockstart = r.randint(0,3)
+                if row1[blockstart] == 0:
+                    row1[blockstart] += r.choice([2,4])
+                    v1 = True
+        v1 = False
+        if startchoice == 2:
+            while v1 == False:
+                blockstart = r.randint(0,3)
+                if row2[blockstart] == 0:
+                    row2[blockstart] += r.choice([2,4])
+                    v1 = True
+        v1 = False
+        if startchoice == 3:
+            while v1 == False:
+                blockstart = r.randint(0,3)
+                if row3[blockstart] == 0:
+                    row3[blockstart] += r.choice([2,4])
+                    v1 = True
+        v1 = False
+        if startchoice == 4:
             blockstart = r.randint(0,3)
-            row1[blockstart] += 2
-        elif startchoice == 2:
-            blockstart = r.randint(0,3)
-            row2[blockstart] += 2
-        elif startchoice == 3:
-            blockstart = r.randint(0,3)
-            row3[blockstart] += 2
-        else:
-            blockstart = r.randint(0,3)
-            row4[blockstart] += 2
+            row4[blockstart] += r.choice([2,4])
 setup()
 main()
