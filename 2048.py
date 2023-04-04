@@ -4,9 +4,9 @@ global row1
 global row2
 global row3
 global row4
-row1 = [0,0,0,0]
-row2 = [0,0,0,0]
-row3 = [0,0,0,0]
+row1 = [0,2,0,4]
+row2 = [0,8,2,4]
+row3 = [16,8,4,2]
 row4 = [0,0,0,0]
 global control
 control = ""
@@ -58,35 +58,51 @@ def main():
                 selector3 = 3
                 selector4 = 3
                 for x in range(4):
-                    if row1[selector] > 0:
-                        addvar = row1[selector]
-                        if selector != 0:
-                            row1[selector] = 0
-                            if row1[selector - 1] == 0 or row1[selector - 1] == addvar:
-                                row1[selector - 1] += addvar
-                                selector -= 1
-                    else:
-                        selector -= 1
-                        
-                    if row2[selector2] > 0:
-                        addvar2 = row2[selector2]
-                        if selector2 != 0:
-                            row2[selector2] = 0
-                            if row2[selector2 - 1] == 0 or row2[selector2 - 1] == addvar2:
-                                row2[selector2 - 1] += addvar2
-                                selector2 -= 1
-                    else:
-                        selector2 -= 1
+                    for x in range(2):
+                        if selector == 0:
+                            selector = 3
+                        if row1[selector] > 0:
+                            addvar = row1[selector]
+                            if selector != 0:
+                                if row1[selector - 1] == 0 or row1[selector - 1] == addvar:
+                                    row1[selector - 1] += addvar
+                                    row1[selector] = 0
+                                    selector -= 1
+                                else:
+                                    selector -= 1
+                        else:
+                            selector -= 1
+                            
+                    for x in range(2):
+                        if selector2 == 0:
+                            selector2 = 3
+                        if row2[selector2] > 0:
+                            addvar2 = row2[selector2]
+                            if selector2 != 0:
+                                if row2[selector2 - 1] == 0 or row2[selector2 - 1] == addvar2:
+                                    row2[selector2 - 1] += addvar2
+                                    row2[selector2] = 0
+                                    selector2 -= 1
+                                else:
+                                    selector2 -= 1
+                        else:
+                            selector2 -= 1
 
-                    if row3[selector3] > 0:
-                        addvar3 = row3[selector3]
-                        if selector3 != 0:
-                            row3[selector3] = 0
-                            if row3[selector3 - 1] == 0 or row3[selector3 - 1] == addvar3:
-                                row3[selector3 - 1] += addvar3
-                                selector3 -= 1
-                    else:
-                        selector3 -= 1
+                            
+                    for x in range(2):
+                        if selector3 == 0:
+                            selector3 = 3
+                        if row3[selector3] > 0:
+                            addvar3 = row3[selector3]
+                            if selector3 != 0:
+                                if row3[selector3 - 1] == 0 or row3[selector3 - 1] == addvar3:
+                                    row3[selector3 - 1] += addvar3
+                                    row3[selector3] = 0
+                                    selector3 -= 1
+                                else:
+                                    selector3 -= 1
+                        else:
+                            selector3 -= 1
 
                     if row4[selector4] > 0:
                         addvar4 = row4[selector4]
@@ -104,45 +120,64 @@ def main():
                 selector3 = 0
                 selector4 = 0
                 for x in range(4):
-                    if row1[selector] > 0:
-                        addvar = row1[selector]
-                        if selector != 3:
-                            row1[selector] = 0
-                            if row1[selector + 1] == 0 or row1[selector + 1] == addvar:
-                                row1[selector + 1] += addvar
-                                selector += 1
-                    else:
-                        selector += 1
+                    for x in range(2):
+                        if selector == 3:
+                            seletor = 0
+                        print("selector =",selector)
+                        if row1[selector] > 0:
+                            addvar = row1[selector]
+                            if selector != 3:
+                                if row1[selector + 1] == 0 or row1[selector + 1] == addvar:
+                                    row1[selector + 1] += addvar
+                                    row1[selector] = 0
+                                    selector += 1
+                                else:
+                                    selector += 1
+                        else:
+                            selector += 1
 
-                    if row2[selector2] > 0:
-                        addvar2 = row2[selector2]
-                        if selector2 != 3:
-                            row2[selector2] = 0
-                            if row2[selector2 + 1] == 0 or row2[selector2 + 1] == addvar2:
-                                row2[selector2 + 1] += addvar2
-                                selector2 += 1
-                    else:
-                        selector2 += 1
-
-                    if row3[selector3] > 0:
-                        addvar3 = row3[selector3]
-                        if selector3 != 3:
-                            row3[selector3] = 0
-                            if row3[selector3 + 1] == 0 or row3[selector3 + 1] == addvar3:
-                                row3[selector3 + 1] += addvar3
-                                selector3 += 1
+                            
+                    for x in range(2):
+                        if selector2 == 3:
+                            selector2 = 0
+                        if row2[selector2] > 0:
+                            addvar2 = row2[selector2]
+                            if selector2 != 3:
+                                if row2[selector2 + 1] == 0 or row2[selector2 + 1] == addvar2:
+                                    row2[selector2 + 1] += addvar2
+                                    row2[selector2] = 0
+                                    selector2 += 1
+                                else:
+                                    selector += 1
+                        else:
+                            selector2 += 1
+                            
+                    for x in range(2):
+                        if selector3 == 3:
+                            selector3 = 0
+                        if row3[selector3] > 0:
+                            addvar3 = row3[selector3]
+                            if selector3 != 3:
+                                if row3[selector3 + 1] == 0 or row3[selector3 + 1] == addvar3:
+                                    row3[selector3 + 1] += addvar3
+                                    selector3 += 1
+                                else:
+                                    selector += 1
                     else:
                         selector3 += 1
-                        
-                    if row4[selector4] > 0:
-                        addvar4 = row4[selector4]
-                        if selector4 != 3:
-                            row4[selector4] = 0
-                            if row4[selector4 + 1] == 0 or row4[selector4 + 1] == addvar4:
-                                row4[selector4 + 1] += addvar4
-                                selector4 += 1
-                    else:
-                        selector4 += 1
+
+                    for x in range(2):
+                        if selector3 == 3:
+                            selector3 = 0
+                        if row4[selector4] > 0:
+                            addvar4 = row4[selector4]
+                            if selector4 != 3:
+                                row4[selector4] = 0
+                                if row4[selector4 + 1] == 0 or row4[selector4 + 1] == addvar4:
+                                    row4[selector4 + 1] += addvar4
+                                    selector4 += 1
+                        else:
+                            selector4 += 1
             elif control == "up":
                 selector = 0
                 for x in range(4):
